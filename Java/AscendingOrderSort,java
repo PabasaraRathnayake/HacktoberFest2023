@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class AscendingOrderSort {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[100];
+        int size = 0;
+
+        System.out.println("Enter integers from 1 to 100. Enter -1 to finish input.");
+
+        int input;
+        while (size < 100) {
+            System.out.print("Enter an integer (-1 to finish): ");
+            input = scanner.nextInt();
+
+            if (input == -1) {
+                break;
+            }
+
+            if (input < 1 || input > 100) {
+                System.out.println("Please enter an integer between 1 and 100.");
+                continue;
+            }
+
+            numbers[size] = input;
+            size++;
+        }
+
+        if (size == 0) {
+            System.out.println("No valid numbers entered.");
+        } else {
+            // Sort the numbers in ascending order using bubble sort
+            bubbleSort(numbers, size);
+
+            System.out.println("Numbers in ascending order:");
+            for (int i = 0; i < size; i++) {
+                System.out.print(numbers[i] + " ");
+            }
+        }
+    }
+
+    public static void bubbleSort(int[] arr, int size) {
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 1; i < size; i++) {
+                if (arr[i - 1] > arr[i]) {
+                    // Swap arr[i-1] and arr[i]
+                    int temp = arr[i - 1];
+                    arr[i - 1] = arr[i];
+                    arr[i] = temp;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+    }
+}
